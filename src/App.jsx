@@ -1,12 +1,12 @@
 import React from 'react';
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
-import { Main } from './pages/main';
+import { AppRouter } from './router';
 
 function App() {
   return (
     <ChakraProvider>
       <CSSReset />
-      <Main />
+      <AppRouter />
     </ChakraProvider>
   );
 }
