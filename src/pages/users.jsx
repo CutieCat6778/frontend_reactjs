@@ -1,4 +1,5 @@
 import { Box, Heading, Text } from '@chakra-ui/layout';
+import { Code } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,9 +21,9 @@ export function Users() {
 
   return (
     <Box>
-      <Heading>Xin chào {user.data.details.username}</Heading>
+      <Heading color="red.400">Xin chào {user.data.details.username}</Heading>
       <Text>
-        Level hiện tại của bạn là {user.data.level} và lượng kinh nghiệm hiện tại của bạn là {user.data.exp}. Tổng bạn đã nhắn {user.data.total}
+        Level hiện tại của bạn là <Code>{user.data.level}</Code> và lượng kinh nghiệm hiện tại của bạn là <Code>{user.data.exp}</Code>. Tổng bạn đã nhắn <Code>{user.data.total}</Code>
       </Text>
     </Box>
   );

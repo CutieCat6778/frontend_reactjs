@@ -28,7 +28,7 @@ export function FormBox() {
         onSubmit={(values, actions) => {
           setTimeout(() => {
             values = JSON.parse(JSON.stringify(values, null, 2));
-            window.location = window.location.href + `user/${values}`;
+            window.location = window.location.href + `users/${values.name}`;
           }, 1000);
         }}
       >

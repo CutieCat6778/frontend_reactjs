@@ -9,16 +9,14 @@ import { Users } from './pages/users';
 export function AppRouter () {
   return (
     <BrowserRouter>
-      <div className="container-fluid">
-        <Routes>
-          {/* Other routers */}
-          <Route path="/" element={<App/>} />
-          <Route path="users" element={<Users />}>
-            <Route path=":userid" element={<Users />}/>
-          </Route>
-          <Route path="*" element={<Invalid/>}/>
-        </Routes>
-      </div>
+      <Routes>
+        {/* Other routers */}
+        <Route path="/" element={<App/>} />
+        <Route path="users" element={<Users />}>
+          <Route path=":userid" element={<Users />}/>
+        </Route>
+        <Route path="*" element={<Invalid/>}/>
+      </Routes>
     </BrowserRouter>
   );
 }
