@@ -1,8 +1,8 @@
 import { Box, Heading, Text } from '@chakra-ui/layout';
 import { Code } from '@chakra-ui/react';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getUserById } from '../api/users';
 
 export function Users() {
   const [user, setUser] = useState(null);
@@ -11,7 +11,7 @@ export function Users() {
 
   useEffect(() => {
     async function searchUser(id) {
-      const { data } = await axios.get('https://backend-nestjs.vercel.app/user/id/' + id);
+      const { data } = await getUserById(id);
       setUser(data);
     }
     searchUser(id);

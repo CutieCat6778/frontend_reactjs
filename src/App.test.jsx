@@ -5,6 +5,6 @@ import App from './App';
 
 test('Hello world!', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Hãy cho tôi cái ID của bạn/i);
+  const linkElement = screen.getByText(/Phân tích noobs/i);
   expect(linkElement).toBeInTheDocument();
 });
