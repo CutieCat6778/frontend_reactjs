@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/layout';
 import { useEffect, useRef, useState } from 'react';
-import { getMessagesThisWeek } from '../../api/messages';
 import { LoadingCircle } from '../utils/loadingCircle';
 import {
   Chart,
@@ -12,6 +11,7 @@ import {
   CategoryScale,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { getUpdatesThisWeek } from '../../api/updates';
 
 export function ChartActionWeeks() {
   Chart.register(
@@ -45,13 +45,12 @@ export function ChartActionWeeks() {
       0, 0, 0, 0, 0 ,0 ,0
     ];
     async function getMessages() {
-      const { data } = await getMessagesThisWeek(today);
+      const { data } = await getUpdatesThisWeek(today);
       for (const user of data.data) {
-        const hour = new Date(user.time).getDay();
-        console.log(hour);
+        const hour = new Date(user.time[0]).getDay();
         values[hour - 1]++;
-        console.log(values);
       }
+      console.log(values);
       const chartRes = {
         labels: [
           "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật"

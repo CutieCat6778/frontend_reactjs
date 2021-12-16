@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/layout';
 import { useEffect, useRef, useState } from 'react';
-import { getMessagesByDay } from '../../api/messages';
 import { LoadingCircle } from '../utils/loadingCircle';
 import {
   Chart,
@@ -12,6 +11,7 @@ import {
   CategoryScale,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { getUpdatesToday } from '../../api/updates';
 
 export function ChartActionToday() {
   Chart.register(
@@ -26,8 +26,6 @@ export function ChartActionToday() {
   const [chartData, setChartData] = useState(null);
   const chartRef = useRef(null);
 
-  const today = new Date().getDate();
-
   const plugin = {
     id: 'custom_canvas_background_color',
     beforeDraw: chart => {
@@ -40,15 +38,19 @@ export function ChartActionToday() {
     },
   };
 
+  const dummy = 1;
+
   useEffect(() => {
     const values = [
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ];
     async function getMessages() {
-      const { data } = await getMessagesByDay(today);
+      const { data } = await getUpdatesToday(dummy);
       for (const user of data.data) {
-        const hour = new Date(user.time).getHours();
-        values[hour]++;
+        for (const time of user.time){
+          const hour = new Date(time).getHours();
+          values[hour]++;
+        }
       }
       const chartRes = {
         labels: [
@@ -90,7 +92,7 @@ export function ChartActionToday() {
       setChartData(chartRes);
     }
     getMessages();
-  }, [today]);
+  }, [dummy]);
 
   return (
     <Box mt="16px" margin="7px" display="block" w="600" h="200">

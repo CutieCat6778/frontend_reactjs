@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = "https://backend-nestjs.vercel.app/user";
+const BACKEND_URL = "http://localhost:3001/user";
 
 export async function getUserById(id) {
   return await axios.get(BACKEND_URL + '/id/' + id);
