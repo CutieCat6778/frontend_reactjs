@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = "http://localhost:3001/messages";
+const BACKEND_URL = "https://backend-nestjs.vercel.app/messages";
 
 export async function getMessagesToday() {
   return await axios.get(BACKEND_URL);
